@@ -3273,6 +3273,7 @@ Dim p1 As POINTAPI
             End If
             Me.CommandlineWin.Toggle
             commandlineMenu(1).Checked = Me.CommandlineWin.Visible
+            menuView(2).Checked = Me.CommandlineWin.Visible
             
         Case 2:
             Call menuFile_Click(3)
