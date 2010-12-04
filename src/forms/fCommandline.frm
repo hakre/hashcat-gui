@@ -204,6 +204,7 @@ End Function
 Private Function zWinHide() As Long
         If Me.Visible Then
             Me.Parent.CommandlineWin.Toggle
+            Me.Parent.commandlineMenu(1).Checked = Me.Parent.CommandlineWin.Visible
             zWinHide = 1
         End If
 End Function
