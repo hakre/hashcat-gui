@@ -40,12 +40,14 @@ Dim i As Long, l As Long, tstr As String, c As Long
 End Function
 'select hashcat exe by a dialog
 'returns an empty string if cancel / failed
-Public Function HCGUI_bin_askfor(Optional ByVal hWnd As Long = 0, Optional BinOs As eAcBinOs = -1) As String
+Public Function HCGUI_bin_askfor(Optional ByVal hWnd As Long = 0, Optional BinOs As eAcBinOs = -1, Optional sInitFile As String = "") As String
 Dim cc As cCommonDialog
 Dim sFile As String
 Dim sFilter As String
 Dim sFilterWin As String
 Dim sFilterLinux As String
+Dim sInitDir As String
+Dim cFile As New cFileinfo
 
     sFilterWin = "hashcat.exe;hashcat-cli.exe"
     sFilterLinux = Replace(sFilterWin, ".exe", ".bin")
@@ -58,10 +60,15 @@ Dim sFilterLinux As String
         sFilter = "hashcat Linux Executeable|" & sFilterLinux & "|hashcat Windows Executeable|" & sFilterWin
     End If
     
+    ' initial directory
+    cFile.Path = sInitFile
+    sInitDir = cFile.ExistingDir
+    
     ' display dialog
     Set cc = New cCommonDialog
+    
     If cc.VBGetOpenFileName(sFile, , , , , , _
-        sFilter & "|Executeables|*.bin;*.exe|All Files (*.*)|*.*", , , "Select hashcat Executeable", "exe", hWnd, OFN_HideReadOnly) Then
+        sFilter & "|Executeables|*.bin;*.exe|All Files (*.*)|*.*", , sInitDir, "Select hashcat Executeable", "exe", hWnd, OFN_HideReadOnly) Then
         HCGUI_bin_askfor = sFile
     End If
     
@@ -253,7 +260,7 @@ Dim oFile As cFileinfo
                 For Each oFile In oPlain.Fileinfo.Files
                     If oFile.Exists And oFile.isFile Then
                         Set newPlain = New cPlainfile
-                        newPlain.Filename = oFile.Path
+                        newPlain.FileName = oFile.Path
                         newPlain.Checked = True
                         Call newPlains.Add(newPlain)
                     End If
@@ -261,7 +268,7 @@ Dim oFile As cFileinfo
             Else
                 'just files
                 Set newPlain = New cPlainfile
-                newPlain.Filename = oPlain.Filename
+                newPlain.FileName = oPlain.FileName
                 newPlain.Checked = True
                 Call newPlains.Add(newPlain)
             End If

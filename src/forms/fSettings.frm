@@ -109,7 +109,9 @@ End Sub
 Private Sub plainsCmd_Click()
 Dim sFile As String
 
-    sFile = HCGUI_bin_askfor(Me.hWnd, Me.BinOs)
+    sFile = Me.binText.Text
+
+    sFile = HCGUI_bin_askfor(Me.hWnd, Me.BinOs, sFile)
     If Len(sFile) Then
         Me.binText.Text = sFile
     End If
