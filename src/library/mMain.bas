@@ -90,10 +90,15 @@ Dim sDefault As String
     sFile = INIRead("default", "hashcat", HCGUI_Inifile)
     
     'default binary basename
-    sDefBasename = "hashcat-cli.exe"
+    sDefBasename = "hashcat-cli32.exe"
+    If Environ("PROCESSOR_ARCHITECTURE") = "AMD64" Then
+        sDefBasename = "hashcat-cli64.exe"
+    End If
+    
     If BinOs = -1 Then BinOs = HCGUI_BinOs
     If BinOs = Wine Then
-        sDefBasename = "hashcat-cli.exe"
+        ' FIXME it's just the same, fix this (2010-12-04)
+        sDefBasename = sDefBasename
     End If
             
     'create the default to be able to compare
@@ -103,7 +108,7 @@ Dim sDefault As String
         sDefault = ""
     Else
         If BinOs = Wine Then
-            'pass basename only on wine sothat exec works hopefull yproperly
+            'pass basename only on wine sothat exec works hopefully properly
             sDefault = sDefBasename
         End If
     End If

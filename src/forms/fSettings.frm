@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form fSettings 
    BorderStyle     =   3  'Fester Dialog
    Caption         =   "Select hashcat binary"
-   ClientHeight    =   1275
+   ClientHeight    =   1260
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6555
@@ -10,10 +10,19 @@ Begin VB.Form fSettings
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   1275
+   ScaleHeight     =   1260
    ScaleWidth      =   6555
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'Fenstermitte
+   Begin VB.CommandButton cmd 
+      Caption         =   "&Reset"
+      Height          =   375
+      Index           =   2
+      Left            =   5220
+      TabIndex        =   6
+      Top             =   840
+      Width           =   1275
+   End
    Begin VB.CheckBox osCheck 
       Caption         =   "&WINE"
       Height          =   315
@@ -21,14 +30,14 @@ Begin VB.Form fSettings
       TabIndex        =   2
       ToolTipText     =   "compability layer for WINE regarding hashcat executeable"
       Top             =   900
-      Width           =   3315
+      Width           =   1935
    End
    Begin VB.CommandButton cmd 
       Cancel          =   -1  'True
       Caption         =   "Cancel"
       Height          =   375
       Index           =   1
-      Left            =   5220
+      Left            =   3900
       TabIndex        =   4
       Top             =   840
       Width           =   1275
@@ -56,7 +65,7 @@ Begin VB.Form fSettings
       Default         =   -1  'True
       Height          =   375
       Index           =   0
-      Left            =   3900
+      Left            =   2580
       TabIndex        =   3
       Top             =   840
       Width           =   1275
@@ -101,7 +110,7 @@ End Property
 
 Private Sub binText_Change()
 Dim sCaption As String
-Dim cFile As New cFileInfo
+Dim cFile As New cFileinfo
 
 
     cFile.Path = binText.Text
@@ -135,7 +144,14 @@ Private Sub cmd_Click(Index As Integer)
             m_Parent.BinaryOs = HCGUI_BinOs
         End If
     End If
-    Unload Me
+    
+    If Index < 2 Then
+        Unload Me
+    End If
+    
+    If Index = 2 Then
+        
+    End If
 End Sub
 
 Private Sub plainsCmd_Click()
