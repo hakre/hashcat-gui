@@ -27,7 +27,7 @@ Begin VB.Form fSettings
       Caption         =   "&WINE"
       Height          =   315
       Left            =   60
-      TabIndex        =   2
+      TabIndex        =   3
       ToolTipText     =   "compability layer for WINE regarding hashcat executeable"
       Top             =   900
       Width           =   1935
@@ -38,7 +38,7 @@ Begin VB.Form fSettings
       Height          =   375
       Index           =   1
       Left            =   3900
-      TabIndex        =   4
+      TabIndex        =   5
       Top             =   840
       Width           =   1275
    End
@@ -66,15 +66,15 @@ Begin VB.Form fSettings
       Height          =   375
       Index           =   0
       Left            =   2580
-      TabIndex        =   3
+      TabIndex        =   4
       Top             =   840
       Width           =   1275
    End
    Begin VB.Label binLabel 
       Caption         =   "Label1"
-      Height          =   255
+      Height          =   195
       Left            =   60
-      TabIndex        =   5
+      TabIndex        =   2
       Top             =   540
       Width           =   4515
    End
@@ -150,7 +150,7 @@ Private Sub cmd_Click(Index As Integer)
     End If
     
     If Index = 2 Then
-        
+        Me.binText.Text = HCGUI_bin_guess()
     End If
 End Sub
 
