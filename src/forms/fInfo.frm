@@ -290,10 +290,8 @@ End Sub
 Private Sub wineImage_Click()
 Dim r As Long
 Dim cShellExec As New cShellExec
-
     
-    
-    r = cShellExec.Exec(Me.hWnd, "open", "http://www.winehq.org/", "", "", SW_SHOWNORMAL)
+    r = cShellExec.Exec(Me.hWnd, "open", "http://www.winehq.org/", "", "", ShellExec_SW_SHOWNORMAL)
     
 End Sub
 
