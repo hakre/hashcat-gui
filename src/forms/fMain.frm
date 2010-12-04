@@ -1177,7 +1177,6 @@ Dim cPanel As Panel
 Dim iVer As Long
 
     m_Binary = Path
-    Stop
         
     'update statusbar
     sText = HCGUI_binver(m_Binary)
@@ -1899,6 +1898,8 @@ Dim oLine As New cAcCommandlineBuilder
     
     t = t & "hashcat-gui debuginfo v0.1" & vbCrLf
     t = t & "--------------------------" & vbCrLf & vbCrLf
+    
+    t = t & "Architecture: " & Environ("PROCESSOR_ARCHITECTURE") & vbCrLf & vbCrLf
     
     
     sVer = HCGUI_binver(Me.Binary)
