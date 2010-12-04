@@ -49,7 +49,8 @@ Dim sFilterLinux As String
 Dim sInitDir As String
 Dim cFile As New cFileinfo
 
-    sFilterWin = "hashcat.exe;hashcat-cli.exe"
+    ' Filter for older, old and 32/64 bit hashcat cli binaries
+    sFilterWin = "hashcat.exe;hashcat-cli.exe;hashcat-cli32.exe;hashcat-cli64.exe"
     sFilterLinux = Replace(sFilterWin, ".exe", ".bin")
 
     ' WINE compat layer
