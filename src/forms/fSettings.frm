@@ -2,16 +2,16 @@ VERSION 5.00
 Begin VB.Form fSettings 
    BorderStyle     =   3  'Fester Dialog
    Caption         =   "Select hashcat binary"
-   ClientHeight    =   1020
+   ClientHeight    =   1275
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   6630
+   ClientWidth     =   6555
    Icon            =   "fSettings.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   1020
-   ScaleWidth      =   6630
+   ScaleHeight     =   1275
+   ScaleWidth      =   6555
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'Fenstermitte
    Begin VB.CheckBox osCheck 
@@ -20,7 +20,7 @@ Begin VB.Form fSettings
       Left            =   60
       TabIndex        =   2
       ToolTipText     =   "compability layer for WINE regarding hashcat executeable"
-      Top             =   540
+      Top             =   900
       Width           =   3315
    End
    Begin VB.CommandButton cmd 
@@ -30,7 +30,7 @@ Begin VB.Form fSettings
       Index           =   1
       Left            =   5220
       TabIndex        =   4
-      Top             =   540
+      Top             =   840
       Width           =   1275
    End
    Begin VB.CommandButton plainsCmd 
@@ -58,8 +58,16 @@ Begin VB.Form fSettings
       Index           =   0
       Left            =   3900
       TabIndex        =   3
-      Top             =   540
+      Top             =   840
       Width           =   1275
+   End
+   Begin VB.Label binLabel 
+      Caption         =   "Label1"
+      Height          =   255
+      Left            =   60
+      TabIndex        =   5
+      Top             =   540
+      Width           =   4515
    End
 End
 Attribute VB_Name = "fSettings"
@@ -90,6 +98,30 @@ Public Property Let BinOs(Os As eAcBinOs)
         osCheck.Value = vbUnchecked
     End If
 End Property
+
+Private Sub binText_Change()
+Dim sCaption As String
+Dim cFile As New cFileInfo
+
+
+    cFile.Path = binText.Text
+    binLabel.ToolTipText = cFile.Path
+    
+    sCaption = cFile.Basename & ": "
+    
+    If cFile.Exists Then
+        sCaption = sCaption & HCGUI_binver(cFile.Path)
+    Else
+        sCaption = sCaption & "File not found."
+    End If
+    
+    If binLabel.Caption <> sCaption Then
+        binLabel.Caption = sCaption
+    End If
+
+
+End Sub
+
 Private Sub cmd_Click(Index As Integer)
     If Index = 0 Then
         If HCGUI_BinFile <> Me.binText.Text Then
