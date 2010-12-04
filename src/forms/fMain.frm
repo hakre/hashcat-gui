@@ -1177,6 +1177,7 @@ Dim cPanel As Panel
 Dim iVer As Long
 
     m_Binary = Path
+    Stop
         
     'update statusbar
     sText = HCGUI_binver(m_Binary)
@@ -1990,6 +1991,7 @@ Private Function zFillHashmodes(ctlList As ComboBox)
     Call List_Fill(ctlList, 1100, "Domain Cached Credentials")
     Call List_Fill(ctlList, 1200, "MD5(Chap)")
     Call List_Fill(ctlList, 1300, "MSSQL")
+    Call List_Fill(ctlList, 1400, "SHA256")
     
     Dim oHashes As New drhashCollection
     Dim oHash As drhashEntry
