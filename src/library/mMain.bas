@@ -75,6 +75,37 @@ Dim cFile As New cFileinfo
     
 End Function
 '
+' default name of the binary
+'
+' returns an existing file or empty string in case there is no way to determine
+' the default hashcat binary
+'
+Public Function HCGUI_bin_default() As String
+Dim sDefBasename As String
+Dim oFi As New cFileinfo
+Dim sDefault As String
+Dim oFileDefault As New cFileinfo
+
+
+    'default binary basename
+    sDefBasename = "hashcat-cli32.exe"
+    If Environ("PROCESSOR_ARCHITECTURE") = "AMD64" Then
+        sDefBasename = "hashcat-cli64.exe"
+    End If
+    
+    oFi.Path = HCGUI_directory(0)
+    
+    oFileDefault.Path = oFi.Dirname & sDefBasename
+    
+    If oFileDefault.Exists Then
+        HCGUI_bin_default = oFileDefault.Path
+    Else
+        HCGUI_bin_default = ""
+    End If
+
+End Function
+'
+'
 ' guess the name of the binary
 '
 ' returns the existing file or an empty string in case there is no way to determine

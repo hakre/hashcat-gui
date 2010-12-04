@@ -150,7 +150,7 @@ Private Sub cmd_Click(Index As Integer)
     End If
     
     If Index = 2 Then
-        Me.binText.Text = HCGUI_bin_guess()
+        Me.binText.Text = HCGUI_bin_default()
     End If
 End Sub
 
