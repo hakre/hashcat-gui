@@ -149,46 +149,14 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-
 '
 ' API
 '
-Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" ( _
-    ByVal hWnd As Long, ByVal lpOperation As String, ByVal lpFile As String, _
-    ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
-    
-Private Const SW_HIDE = 0
-Private Const SW_MAXIMIZE = 3
-Private Const SW_MINIMIZE = 6
-Private Const SW_RESTORE = 9
-Private Const SW_SHOW = 5
-Private Const SW_SHOWDEFAULT = 10
-Private Const SW_SHOWMAXIMIZED = 3
-Private Const SW_SHOWMINIMIZED = 2
-Private Const SW_SHOWMINNOACTIVE = 7
-Private Const SW_SHOWNA = 8
-Private Const SW_SHOWNOACTIVATE = 4
-Private Const SW_SHOWNORMAL = 1
-
-Private Const ERROR_FILE_NOT_FOUND = 2&
-Private Const ERROR_PATH_NOT_FOUND = 3&
-Private Const ERROR_BAD_FORMAT = 11&
-Private Const SE_ERR_ACCESSDENIED = 5            '  access denied
-Private Const SE_ERR_ASSOCINCOMPLETE = 27
-Private Const SE_ERR_DDEBUSY = 30
-Private Const SE_ERR_DDEFAIL = 29
-Private Const SE_ERR_DDETIMEOUT = 28
-Private Const SE_ERR_DLLNOTFOUND = 32
-Private Const SE_ERR_NOASSOC = 31
-Private Const SE_ERR_OOM = 8                     '  out of memory
-Private Const SE_ERR_SHARE = 26
-
-Private Const STYLE_NORMAL = 11
 
 '
+' hand cursor
 ' http://groups.google.com/group/microsoft.public.vb.general.discussion/browse_thread/thread/ea0ba7fccd937652
 '
-
 Private Const IDC_HAND = 32649&
 Private Declare Function LoadCursor Lib "user32" Alias "LoadCursorA" (ByVal hInstance As Long, ByVal lpCursorName As Long) As Long
 Private Declare Function SetCursor Lib "user32" (ByVal hCursor As Long) As Long
@@ -321,8 +289,11 @@ End Sub
 
 Private Sub wineImage_Click()
 Dim r As Long
+Dim cShellExec As New cShellExec
+
     
-    r = ShellExecute(Me.hWnd, "open", "http://www.winehq.org/", "", "", SW_SHOWNORMAL)
+    
+    r = cShellExec.Exec(Me.hWnd, "open", "http://www.winehq.org/", "", "", SW_SHOWNORMAL)
     
 End Sub
 

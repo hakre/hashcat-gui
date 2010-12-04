@@ -42,6 +42,7 @@ Class=cFileExe; library\cFileExe.cls
 ResFile32="gui.res"
 Module=mMain; library\mMain.bas
 Form=forms\fSettings.frm
+Class=cShellExec; library\cShellExec.cls
 IconForm="fMain"
 Startup="Sub Main"
 HelpFile=""

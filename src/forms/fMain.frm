@@ -1110,12 +1110,16 @@ Begin VB.Form fMain
          Index           =   3
       End
       Begin VB.Menu helpMenuEntry 
-         Caption         =   "-"
+         Caption         =   "Online Forum..."
          Index           =   4
       End
       Begin VB.Menu helpMenuEntry 
-         Caption         =   "Debug Info..."
+         Caption         =   "-"
          Index           =   5
+      End
+      Begin VB.Menu helpMenuEntry 
+         Caption         =   "Debug Info..."
+         Index           =   6
       End
    End
 End
@@ -2588,9 +2592,11 @@ Private Sub hashSeperator_Change()
 End Sub
 
 Private Sub helpMenuEntry_Click(Index As Integer)
-Dim oExec As New cExec
-Dim sCmd As String
-Dim sTitle As String
+' FIXME Dim oExec As New cExec
+' FIXME Dim sCmd As String
+' FIXME Dim sTitle As String
+Dim r As Long
+Dim cShellExec As New cShellExec
 
     Select Case Index
         Case 0: 'info
@@ -2607,7 +2613,11 @@ Dim sTitle As String
             Call fInfo.ShowInfo(Me, 2)
             Exit Sub
             
-        Case 5: 'DebugInfo
+        Case 4: 'Online Forum
+            r = cShellExec.Exec(Me.hWnd, "open", "http://hashcat.net/forum/", "", "", ShellExec_SW_SHOWNORMAL)
+            Exit Sub
+            
+        Case 6: 'DebugInfo
             Call fInfo.ShowInfo(Me, 3, zDebugInfo(), "Debug Info")
             Exit Sub
             

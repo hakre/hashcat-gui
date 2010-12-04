@@ -497,7 +497,7 @@ Private Sub Class_Initialize()
 End Sub
 #End If
 
-Function VBGetOpenFileName(Filename As String, _
+Function VBGetOpenFileName(FileName As String, _
                            Optional FileTitle As String, _
                            Optional FileMustExist As Boolean = True, _
                            Optional MultiSelect As Boolean = False, _
@@ -554,7 +554,7 @@ With opfile
 
     ' Pad file and file title buffers to maximum path
     iBufferSize = MAX_PATH * 100
-    s = Filename & String$(iBufferSize - Len(Filename), 0)
+    s = FileName & String$(iBufferSize - Len(FileName), 0)
     .lpstrFile = s
     .nMaxFile = iBufferSize
     s = FileTitle & String$(MAX_FILE - Len(FileTitle), 0)
@@ -570,17 +570,17 @@ With opfile
         If .nFileOffset > 0 Then
             If Asc(Mid(.lpstrFile, .nFileOffset, 1)) = 0 Then
                 'multiple files
-                Filename = StrZToStr(.lpstrFile)
+                FileName = StrZToStr(.lpstrFile)
                 Set m_Files = zMultipleFiles(.lpstrFile, .nFileOffset)
             Else
-                Filename = StrZToStr(.lpstrFile)
+                FileName = StrZToStr(.lpstrFile)
                 Set m_Files = New Collection
-                m_Files.Add Filename
+                m_Files.Add FileName
             End If
         Else
-            Filename = StrZToStr(.lpstrFile)
+            FileName = StrZToStr(.lpstrFile)
             Set m_Files = New Collection
-            m_Files.Add Filename
+            m_Files.Add FileName
         End If
         FileTitle = StrZToStr(.lpstrFileTitle)
         flags = .flags
@@ -592,7 +592,7 @@ With opfile
     Case 0
         ' Cancelled
         VBGetOpenFileName = False
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = -1
@@ -601,7 +601,7 @@ With opfile
         ' Extended error
         m_lExtendedError = CommDlgExtendedError()
         VBGetOpenFileName = False
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = -1
@@ -613,7 +613,7 @@ Private Function StrZToStr(s As String) As String
     StrZToStr = Left$(s, lstrlen(s))
 End Function
 
-Function VBGetSaveFileName(Filename As String, _
+Function VBGetSaveFileName(FileName As String, _
                            Optional FileTitle As String, _
                            Optional OverWritePrompt As Boolean = True, _
                            Optional Filter As String = "All (*.*)| *.*", _
@@ -662,7 +662,7 @@ With opfile
     .nFilterIndex = FilterIndex
 
     ' Pad file and file title buffers to maximum path
-    s = Filename & String$(MAX_PATH - Len(Filename), 0)
+    s = FileName & String$(MAX_PATH - Len(FileName), 0)
     .lpstrFile = s
     .nMaxFile = MAX_PATH
     s = FileTitle & String$(MAX_FILE - Len(FileTitle), 0)
@@ -674,7 +674,7 @@ With opfile
     Select Case m_lApiReturn
     Case 1
         VBGetSaveFileName = True
-        Filename = StrZToStr(.lpstrFile)
+        FileName = StrZToStr(.lpstrFile)
         FileTitle = StrZToStr(.lpstrFileTitle)
         flags = .flags
         ' Return the filter index
@@ -684,7 +684,7 @@ With opfile
     Case 0
         ' Cancelled:
         VBGetSaveFileName = False
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = 0
@@ -693,7 +693,7 @@ With opfile
         ' Extended error:
         VBGetSaveFileName = False
         m_lExtendedError = CommDlgExtendedError()
-        Filename = ""
+        FileName = ""
         FileTitle = ""
         flags = 0
         FilterIndex = 0
