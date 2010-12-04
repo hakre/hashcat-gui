@@ -1,5 +1,25 @@
 Attribute VB_Name = "mMain"
 
+'
+' API
+'
+
+Private Declare Function GetProcAddress Lib "kernel32" _
+    (ByVal hModule As Long, _
+    ByVal lpProcName As String) As Long
+    
+Private Declare Function GetModuleHandle Lib "kernel32" _
+    Alias "GetModuleHandleA" _
+    (ByVal lpModuleName As String) As Long
+    
+Private Declare Function GetCurrentProcess Lib "kernel32" _
+    () As Long
+
+Private Declare Function IsWow64Process Lib "kernel32" _
+    (ByVal hProc As Long, _
+    bWow64Process As Boolean) As Long
+
+
 
 Public HCGUI_Inifile As String
 Public HCGUI_Mainform As fMain
@@ -89,7 +109,7 @@ Dim oFileDefault As New cFileinfo
 
     'default binary basename
     sDefBasename = "hashcat-cli32.exe"
-    If Environ("PROCESSOR_ARCHITECTURE") = "AMD64" Then
+    If HCGUI_is64bit() Then
         sDefBasename = "hashcat-cli64.exe"
     End If
     
@@ -189,6 +209,27 @@ Dim sOut As String
 
 End Function
 
+
+' guess 64 bit state
+Public Function HCGUI_is64bit()
+Dim handle As Long, bolFunc As Boolean
+
+    ' Assume initially that this is not a Wow64 process
+    bolFunc = False
+
+    ' Now check to see if IsWow64Process function exists
+    handle = GetProcAddress(GetModuleHandle("kernel32"), _
+                   "IsWow64Process")
+
+    If handle > 0 Then ' IsWow64Process function exists
+        ' Now use the function to determine if
+        ' we are running under Wow64
+        IsWow64Process GetCurrentProcess(), bolFunc
+    End If
+
+    HCGUI_is64bit = bolFunc
+
+End Function
 
 ' get the right-left corner of a control (as pointapi in pixels) on screen
 Public Function POS_control_bottomright(aControl As Control) As POINTAPI
@@ -573,6 +614,8 @@ Dim sFile As String
     
     Set HCGUI_bin = oFi
 End Function
+
+
 Public Function HCGUI_job_from_ini(sFile As String, Optional sSection As String = "session") As cJob
 Dim oJob As New cJob
 Dim iNum As Long
