@@ -33,6 +33,27 @@ Private m_set_SpaceInParamEscapeSpace As Boolean
 Private m_set_WinToLinuxSlashes As Boolean
 Private m_set_ParamEscapeWin As Boolean
 
+' NumMin(sParams, m_form.skipText(0).Text, "-s", 0)
+Private Function DecMin(sParams As String, ByVal sData As String, sFlag As String, iDefault As Long, Optional iMin As Long = 0)
+Dim dData As Variant
+
+    dData = Cnv_Str2Dec(sData)
+        
+    If TypeName(dData) = "Decimal" Then
+        If dData < iMin Then dData = iMin
+        If dData > CDec("18446744073709551615") Then dData = CDec("18446744073709551615")
+    Else
+        dData = CDec(0)
+    End If
+    
+    
+    If dData >= iMin And dData <> iDefault Then
+        sParams = sParams & " " & sFlag & " " & CStr(dData)
+    End If
+    
+DecMin = sParams
+End Function
+
 '
 Private Function NumMin(sParams As String, ByVal sData As String, sFlag As String, iDefault As Long, Optional iMin As Long = 0)
 Dim iValue As Long
@@ -279,10 +300,10 @@ Dim sSeperator As String
     sParams = NumMin(sParams, m_form.segmentText.Text, "-c", 32)
     
     'skip
-    sParams = NumMin(sParams, m_form.skipText(0).Text, "-s", 0)
+    sParams = DecMin(sParams, m_form.skipText(0).Text, "-s", 0)
 
     'limit
-    sParams = NumMin(sParams, m_form.skipText(1).Text, "-l", 0)
+    sParams = DecMin(sParams, m_form.skipText(1).Text, "-l", 0)
 
     'hashseperator
     sSeperator = m_form.hashSeperator.Text

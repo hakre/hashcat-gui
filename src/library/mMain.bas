@@ -40,11 +40,14 @@ End Enum
 Public Function Cnv_Str2Dec(ByVal str As String) As Variant
 Dim i As Long, l As Long, tstr As String, c As Long
 
+    str = Trim(str)
+    
+    ' filter string to decimals (this is not round for a good reason)
     l = Len(str)
     If l > 0 Then
         For i = 1 To l
             c = Asc(Mid(str, i, 1))
-            If c > 47 And c < 58 Then
+            If (c = 48 And Len(tstr) > 0) Or (c > 48 And c < 58) Then
                 tstr = tstr + Chr(c)
             End If
         Next i
@@ -54,6 +57,12 @@ Dim i As Long, l As Long, tstr As String, c As Long
     If str = "" Then
         Cnv_Str2Dec = ""
     Else
+        If Len(str) > 29 Then
+            str = "79228162514264337593543950335"
+        End If
+        If str > "79228162514264337593543950335" Then
+            str = "79228162514264337593543950335"
+        End If
         Cnv_Str2Dec = CDec(str)
     End If
 
