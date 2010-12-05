@@ -36,17 +36,24 @@ Private m_set_ParamEscapeWin As Boolean
 '
 Private Function NumMin(sParams As String, ByVal sData As String, sFlag As String, iDefault As Long, Optional iMin As Long = 0)
 Dim iValue As Long
+Dim dValue As Double
+Dim vValue As Variant
+Dim iLimitPlaces As Long
 
     sData = Trim(sData)
 
-    If Len(sData) > 9 Then
-        sData = Left(sData, 9)
+    iLimitPlaces = 15
+    If Len(sData) > iLimitPlaces Then
+        sData = Left(sData, iLimitPlaces)
     End If
 
-    iValue = Round(Val(sData), 0)
+    
+    dValue = Val(sData)
+    vValue = Round(dValue, 0)
+    'Debug.Print "Value (" & sData & ") Rounded is: " & vValue
             
-    If iValue >= iMin And iValue <> iDefault Then
-        sParams = sParams & " " & sFlag & " " & CStr(iValue)
+    If vValue >= iMin And vValue <> iDefault Then
+        sParams = sParams & " " & sFlag & " " & CStr(vValue)
     End If
         
 NumMin = sParams
