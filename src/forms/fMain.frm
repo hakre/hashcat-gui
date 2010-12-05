@@ -1910,7 +1910,13 @@ Dim oLine As New cAcCommandlineBuilder
     t = t & "hashcat-gui debuginfo v0.1" & vbCrLf
     t = t & "--------------------------" & vbCrLf & vbCrLf
     
-    t = t & "64 bit Architecture: " & CStr(HCGUI_is64bit()) & vbCrLf & vbCrLf
+    t = t & "64 bit Architecture: "
+    If HCGUI_is64bit() Then
+        t = t & "Yes"
+    Else
+        t = t & "No"
+    End If
+    t = t & vbCrLf & vbCrLf
     
     
     sVer = HCGUI_binver(Me.Binary)
