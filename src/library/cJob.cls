@@ -22,6 +22,7 @@ Private m_BruteLen As New cJobRange
 Private m_HashFile As String
 Private m_HashMode As Long
 Private m_HashSeperator As String
+Private m_HashRemove As Boolean
 Private m_Limit As Variant
 Private m_OutFile As New cJobOptional
 Private m_Plains As cPlains
@@ -48,10 +49,18 @@ End Property
 Public Property Let HashFile(sValue As String)
     m_HashFile = sValue
 End Property
-Public Property Get hashSeperator() As String
-    hashSeperator = m_HashSeperator
+Public Property Let HashRemove(bRemove As Boolean)
+    m_HashRemove = bRemove
 End Property
-Public Property Let hashSeperator(sValue As String)
+
+Public Property Get HashRemove() As Boolean
+    HashRemove = m_HashRemove
+End Property
+
+Public Property Get HashSeperator() As String
+    HashSeperator = m_HashSeperator
+End Property
+Public Property Let HashSeperator(sValue As String)
     If Len(sValue) > 1 Then sValue = Left(sValue, 1)
     If Len(sValue) = 0 Then sValue = ":"
     m_HashSeperator = sValue

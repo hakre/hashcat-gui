@@ -628,6 +628,7 @@ Dim i As Long
     oJob.HashFile = INIRead(sSection, "hash", sFile)
     oJob.HashMode = INIReadInt(sSection, "hashmode", sFile)
     oJob.hashSeperator = INIRead(sSection, "hashseperator", sFile)
+    oJob.hashRemove = CBool(INIReadInt(sSection, "hashremove", sFile))
     
     ' bruteforce options
     oJob.BruteChars = INIRead(sSection, "brutechars", sFile)
@@ -687,6 +688,8 @@ Dim oPlain As cPlainfile
     r = INIWrite(oJob.HashFile, sSection, "hash", sFile)
     r = INIWrite(oJob.HashMode, sSection, "hashmode", sFile)
     r = INIWrite(oJob.hashSeperator, sSection, "hashseperator", sFile)
+    r = INIWrite(CInt(oJob.hashRemove), sSection, "hashremove", sFile)
+    
     
     ' bruteforce options
     r = INIWrite(oJob.BruteChars, sSection, "brutechars", sFile)

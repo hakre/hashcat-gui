@@ -289,6 +289,11 @@ Dim sSeperator As String
     If sSeperator <> ":" And Len(sSeperator) Then
         sParams = sParams & " -p " & EscapeParam(sSeperator)
     End If
+    
+    'remove found hashes --remove
+    If m_form.hashRemove.Value Then
+        sParams = sParams & " --remove"
+    End If
 
     'hashes
     sValue = m_form.hashFileText.Text
