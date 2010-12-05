@@ -256,7 +256,7 @@ Dim t As Long
     
     'header size
     On Error Resume Next
-        infoImageFrame.Move -6 * Screen.TwipsPerPixelX, -3 * Screen.TwipsPerPixelY, ScaleWidth + 12 * Screen.TwipsPerPixelX, infoImage.Height + 3 * Screen.TwipsPerPixelY
+        infoImageFrame.Move -5 * Screen.TwipsPerPixelX, -1 * Screen.TwipsPerPixelY, ScaleWidth + 12 * Screen.TwipsPerPixelX, infoImage.Height + 3 * Screen.TwipsPerPixelY
         infoImage.Left = -infoImageFrame.Left
     On Error GoTo 0
         
