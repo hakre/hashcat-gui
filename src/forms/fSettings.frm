@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form fSettings 
    BorderStyle     =   3  'Fester Dialog
    Caption         =   "Select hashcat binary"
@@ -33,8 +34,7 @@ Begin VB.Form fSettings
       Width           =   1935
    End
    Begin VB.CommandButton cmd 
-      Cancel          =   -1  'True
-      Caption         =   "Cancel"
+      Caption         =   "&Cancel"
       Height          =   375
       Index           =   1
       Left            =   3900
@@ -42,17 +42,7 @@ Begin VB.Form fSettings
       Top             =   840
       Width           =   1275
    End
-   Begin VB.CommandButton plainsCmd 
-      Caption         =   "..."
-      Height          =   315
-      Left            =   6120
-      MaskColor       =   &H80000000&
-      TabIndex        =   1
-      ToolTipText     =   "Browse"
-      Top             =   120
-      Width           =   375
-   End
-   Begin VB.TextBox binText 
+   Begin VB.ComboBox binText 
       Height          =   315
       Left            =   60
       TabIndex        =   0
@@ -61,14 +51,35 @@ Begin VB.Form fSettings
       Width           =   5955
    End
    Begin VB.CommandButton cmd 
-      Caption         =   "OK"
-      Default         =   -1  'True
+      Caption         =   "&OK"
       Height          =   375
       Index           =   0
       Left            =   2580
       TabIndex        =   4
       Top             =   840
       Width           =   1275
+   End
+   Begin MSComctlLib.Toolbar binTextTB 
+      Height          =   330
+      Left            =   6060
+      TabIndex        =   1
+      Top             =   120
+      Width           =   390
+      _ExtentX        =   688
+      _ExtentY        =   582
+      ButtonWidth     =   609
+      ButtonHeight    =   582
+      AllowCustomize  =   0   'False
+      Style           =   1
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   1
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Key             =   "browse"
+            Object.ToolTipText     =   "Browse for hashcat CLI binary"
+            ImageKey        =   "tripoint"
+         EndProperty
+      EndProperty
    End
    Begin VB.Label binLabel 
       Caption         =   "Label1"
@@ -87,6 +98,8 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private m_Parent As fMain
+Public WithEvents BinFile As cFbHelper
+Attribute BinFile.VB_VarHelpID = -1
 Public Function Ask(fParent As Form)
     Set m_Parent = fParent
     Me.binText.Text = m_Parent.Binary
@@ -108,10 +121,19 @@ Public Property Let BinOs(Os As eAcBinOs)
     End If
 End Property
 
+Private Sub BinFile_Click(sKey As String)
+    Select Case sKey
+        Case "browse":
+            Call zCmdBrowseBinary
+    End Select
+End Sub
+
+
 Private Sub binText_Change()
 Dim sCaption As String
 Dim cFile As New cFileinfo
 
+    Call BinFile.Trigger(ChangeEvent)
 
     cFile.Path = binText.Text
     binLabel.ToolTipText = cFile.Path
@@ -131,8 +153,13 @@ Dim cFile As New cFileinfo
 
 End Sub
 
+Private Sub binTextTB_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Call BinFile.TriggerClick(Button.Key)
+End Sub
+
 Private Sub cmd_Click(Index As Integer)
     If Index = 0 Then
+        BinFile.RecentTouch
         If HCGUI_BinFile <> Me.binText.Text Then
             HCGUI_BinFile = Me.binText.Text
             Call INIWrite(HCGUI_BinFile, "default", "hashcat", HCGUI_Inifile)
@@ -154,7 +181,30 @@ Private Sub cmd_Click(Index As Integer)
     End If
 End Sub
 
-Private Sub plainsCmd_Click()
+Private Sub Form_Load()
+
+' bind binText to recent and autocomplete
+Set BinFile = New cFbHelper
+Me.binTextTB.ImageList = m_Parent.plainsImages
+Me.binTextTB.Buttons("browse").Image = "folder-open"
+Call BinFile.Init(Me.binText, Me.binTextTB, True)
+
+' load recent from ini
+Call HCGUI_recent_from_ini(BinFile.Recent, HCGUI_Inifile, "hashcatbinaries")
+
+
+
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+
+' save recent to ini
+Call HCGUI_recent_to_ini(BinFile.Recent, HCGUI_Inifile, "hashcatbinaries")
+
+End Sub
+
+
+Private Sub zCmdBrowseBinary()
 Dim sFile As String
 
     sFile = Me.binText.Text
@@ -162,6 +212,7 @@ Dim sFile As String
     sFile = HCGUI_bin_askfor(Me.hWnd, Me.BinOs, sFile)
     If Len(sFile) Then
         Me.binText.Text = sFile
+        BinFile.RecentTouch
     End If
     
 End Sub
