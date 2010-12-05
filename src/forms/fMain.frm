@@ -2883,12 +2883,15 @@ Dim sNumbered As String
             PlainsWin.Toolwindow.list.ListItems.Item(Item.Index).Checked = Item.Checked
         End If
     End If
+    
     Call zPlainsChanged
-
+    
 End Sub
 
 Private Sub plainsList_ItemClick(ByVal Item As MSComctlLib.ListItem)
 
+    MsgBox "plainsList_ItemClick"
+    
     If Not plainsList.SelectedItem Is Nothing Then
         'FIXME tooltiptext is normally not need to change if listview is in detailed mode -> the code below creates sideeffects then
         If plainsList.View = lvwReport Then
@@ -2897,6 +2900,8 @@ Private Sub plainsList_ItemClick(ByVal Item As MSComctlLib.ListItem)
             'plainsList.ToolTipText = plainsList.SelectedItem.ToolTipText
         End If
     End If
+    
+    MsgBox "plainsList_ItemClick Done"
     
 End Sub
 
@@ -2907,10 +2912,8 @@ Dim r As Long
         Select Case KeyCode
             Case 45: r = zPlainsListCmd("item_add")
             Case 46: r = zPlainsListCmd("item_del")
-            Case 93: PopupMenu Me.plainsMenu
+            Case 93: Me.PopupMenu Me.plainsMenu
             Case 123: r = zPlainsListCmd("item_clear")
-            Case Else:
-                'Stop
         End Select
     ElseIf Shift = 2 Then
         Select Case KeyCode
@@ -2934,15 +2937,14 @@ Dim r As Long
             Case 38: r = zPlainsListCmd("item_up")
         End Select
     End If
-
+    
 End Sub
 
 Private Sub plainsList_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
     If Button = vbRightButton Then
-        PopupMenu Me.plainsMenu
+        Me.PopupMenu Me.plainsMenu
     End If
 End Sub
-
 Private Sub plainsList_OLEDragDrop(Data As MSComctlLib.DataObject, Effect As Long, Button As Integer, Shift As Integer, x As Single, y As Single)
 Dim i As Integer
     If oledd_is_files(Data) Then
@@ -3245,15 +3247,13 @@ Private Sub segmentText_Change()
 End Sub
 
 Private Sub segmentText_GotFocus()
-    Call textbox_select_all(Me.ActiveControl)
+    Call textbox_select_all(Me.segmentText)
 End Sub
-
-
 Private Sub skipText_Change(Index As Integer)
     Job_Change
 End Sub
 Private Sub skipText_GotFocus(Index As Integer)
-    Call textbox_select_all(Me.ActiveControl)
+    Call textbox_select_all(Me.skipText(Index))
 End Sub
 
 
@@ -3322,7 +3322,7 @@ End Sub
 
 
 Private Sub threadsText_GotFocus()
-        Call textbox_select_all(Me.ActiveControl)
+        Call textbox_select_all(Me.threadsText)
 End Sub
 
 Private Sub toggleLenText_Change(Index As Integer)

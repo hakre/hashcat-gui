@@ -600,10 +600,21 @@ End Function
 ' @return void
 '
 Public Sub textbox_select_all(Control As Object)
-    
-    Control.SelStart = 0
-    Control.SelLength = Len(Control.Text)
+Dim sTypeName As String
+Dim sMessage As String
 
+    sTypeName = TypeName(Control)
+    
+    Select Case sTypeName
+        Case "TextBox", "ComboBox":
+            Control.SelStart = 0
+            Control.SelLength = Len(Control.Text)
+        Case Else:
+            sMessage = "Internal Error: Invalid Control to select_all: " & sTypeName
+            Debug.Print sMessage
+            MsgBox sMessage
+    End Select
+    
 End Sub
 
 
