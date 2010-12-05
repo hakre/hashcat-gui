@@ -2890,8 +2890,6 @@ End Sub
 
 Private Sub plainsList_ItemClick(ByVal Item As MSComctlLib.ListItem)
 
-    MsgBox "plainsList_ItemClick"
-    
     If Not plainsList.SelectedItem Is Nothing Then
         'FIXME tooltiptext is normally not need to change if listview is in detailed mode -> the code below creates sideeffects then
         If plainsList.View = lvwReport Then
@@ -2900,8 +2898,6 @@ Private Sub plainsList_ItemClick(ByVal Item As MSComctlLib.ListItem)
             'plainsList.ToolTipText = plainsList.SelectedItem.ToolTipText
         End If
     End If
-    
-    MsgBox "plainsList_ItemClick Done"
     
 End Sub
 
