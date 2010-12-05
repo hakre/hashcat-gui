@@ -121,19 +121,9 @@ Public Property Let BinOs(Os As eAcBinOs)
     End If
 End Property
 
-Private Sub BinFile_Click(sKey As String)
-    Select Case sKey
-        Case "browse":
-            Call zCmdBrowseBinary
-    End Select
-End Sub
-
-
-Private Sub binText_Change()
+Private Sub zUpdateBinLabel()
 Dim sCaption As String
 Dim cFile As New cFileinfo
-
-    Call BinFile.Trigger(ChangeEvent)
 
     cFile.Path = binText.Text
     binLabel.ToolTipText = cFile.Path
@@ -150,6 +140,50 @@ Dim cFile As New cFileinfo
         binLabel.Caption = sCaption
     End If
 
+End Sub
+
+Private Sub BinFile_Changed()
+
+    Call zUpdateBinLabel
+
+End Sub
+
+Private Sub BinFile_Click(sKey As String)
+    Select Case sKey
+        Case "browse":
+            Call zCmdBrowseBinary
+    End Select
+End Sub
+
+
+Private Sub binText_Change()
+
+    Call BinFile.Trigger(ChangeEvent)
+
+End Sub
+
+Private Sub binText_Click()
+
+    Call BinFile.Trigger(ClickEvent)
+    
+
+End Sub
+
+Private Sub binText_GotFocus()
+
+    Call zUpdateBinLabel
+    
+End Sub
+
+Private Sub binText_KeyDown(KeyCode As Integer, Shift As Integer)
+
+    zUpdateBinLabel
+
+End Sub
+
+Private Sub binText_LostFocus()
+
+    BinFile.RecentTouch
 
 End Sub
 
@@ -216,3 +250,4 @@ Dim sFile As String
     End If
     
 End Sub
+
