@@ -170,8 +170,9 @@ Dim iAtts As Long
         iAtts = GetAttr(sFile)
         
         If Err.Number <> 0 Then
-            If Err.Number = 5 Or Err.Number = 53 Or Err.Number = 76 Then
+            If Err.Number = 5 Or Err.Number = 52 Or Err.Number = 53 Or Err.Number = 76 Then
                 ' 5 : Invalid Parameter (?)
+                ' 52: File Name or Number wrong
                 ' 53: Path not found
                 ' 76: Path not found
             Else
