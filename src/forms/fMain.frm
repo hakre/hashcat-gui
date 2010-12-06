@@ -3,7 +3,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form fMain 
    BorderStyle     =   1  'Fest Einfach
    Caption         =   "hashcat-gui"
-   ClientHeight    =   11070
+   ClientHeight    =   11760
    ClientLeft      =   150
    ClientTop       =   720
    ClientWidth     =   8550
@@ -21,7 +21,7 @@ Begin VB.Form fMain
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    Picture         =   "fMain.frx":57E2
-   ScaleHeight     =   11070
+   ScaleHeight     =   11760
    ScaleWidth      =   8550
    StartUpPosition =   3  'Windows-Standard
    Begin VB.CheckBox hashRemove 
@@ -56,7 +56,7 @@ Begin VB.Form fMain
       Begin VB.Label zLbl 
          Caption         =   "Charset:"
          Height          =   255
-         Index           =   18
+         Index           =   1
          Left            =   240
          TabIndex        =   31
          Top             =   360
@@ -228,14 +228,24 @@ Begin VB.Form fMain
    Begin VB.PictureBox bottomFrame 
       Align           =   2  'Unten ausrichten
       BorderStyle     =   0  'Kein
-      Height          =   1680
+      Height          =   1980
       Left            =   0
-      ScaleHeight     =   1680
+      ScaleHeight     =   1980
       ScaleWidth      =   8550
       TabIndex        =   40
       TabStop         =   0   'False
-      Top             =   9090
+      Top             =   9480
       Width           =   8550
+      Begin VB.ComboBox outFormatText 
+         Height          =   315
+         ItemData        =   "fMain.frx":2747A
+         Left            =   1260
+         List            =   "fMain.frx":27487
+         Style           =   2  'Dropdown-Liste
+         TabIndex        =   45
+         Top             =   540
+         Width           =   2535
+      End
       Begin VB.ComboBox outFileText 
          Height          =   315
          Left            =   1260
@@ -255,10 +265,10 @@ Begin VB.Form fMain
       Begin VB.CheckBox viewerCheck 
          Caption         =   "Monitor Outfile"
          Height          =   255
-         Left            =   120
-         TabIndex        =   46
+         Left            =   180
+         TabIndex        =   48
          ToolTipText     =   "start outfile viewer with hashcat"
-         Top             =   1320
+         Top             =   1680
          Value           =   1  'Aktiviert
          Width           =   2655
       End
@@ -266,26 +276,26 @@ Begin VB.Form fMain
          Caption         =   "Secret Button (&A)"
          Height          =   555
          Index           =   0
-         Left            =   120
-         TabIndex        =   45
+         Left            =   180
+         TabIndex        =   47
          ToolTipText     =   "Press this Button to start."
-         Top             =   720
+         Top             =   1080
          Width           =   2655
       End
       Begin VB.Frame fraSep 
          Height          =   75
          Index           =   1
-         Left            =   -120
-         TabIndex        =   44
-         Top             =   540
+         Left            =   -60
+         TabIndex        =   46
+         Top             =   900
          Width           =   99135
       End
       Begin VB.Frame resourcesFrame 
          BorderStyle     =   0  'Kein
          Height          =   855
-         Left            =   2880
-         TabIndex        =   59
-         Top             =   720
+         Left            =   2940
+         TabIndex        =   61
+         Top             =   1080
          Visible         =   0   'False
          Width           =   5625
          Begin VB.TextBox skipText 
@@ -293,7 +303,7 @@ Begin VB.Form fMain
             Height          =   315
             Index           =   0
             Left            =   2580
-            TabIndex        =   53
+            TabIndex        =   55
             Text            =   "0"
             ToolTipText     =   "skip number of words from wordfile summary"
             Top             =   60
@@ -304,7 +314,7 @@ Begin VB.Form fMain
             Height          =   315
             Left            =   900
             MaxLength       =   9
-            TabIndex        =   50
+            TabIndex        =   52
             Text            =   "32"
             ToolTipText     =   "number of bytes (MB) to read from wordfiles at once"
             Top             =   480
@@ -315,7 +325,7 @@ Begin VB.Form fMain
             Height          =   315
             Left            =   900
             MaxLength       =   2
-            TabIndex        =   48
+            TabIndex        =   50
             Text            =   "8"
             ToolTipText     =   "number of threads"
             Top             =   60
@@ -326,7 +336,7 @@ Begin VB.Form fMain
             Height          =   315
             Index           =   1
             Left            =   2580
-            TabIndex        =   55
+            TabIndex        =   57
             Text            =   "0"
             ToolTipText     =   "limit number of words from wordfile summary"
             Top             =   480
@@ -337,7 +347,7 @@ Begin VB.Form fMain
             Height          =   255
             Index           =   9
             Left            =   2040
-            TabIndex        =   52
+            TabIndex        =   54
             Top             =   120
             Width           =   435
          End
@@ -346,7 +356,7 @@ Begin VB.Form fMain
             Height          =   255
             Index           =   8
             Left            =   1440
-            TabIndex        =   51
+            TabIndex        =   53
             Top             =   540
             Width           =   435
          End
@@ -355,7 +365,7 @@ Begin VB.Form fMain
             Height          =   255
             Index           =   7
             Left            =   0
-            TabIndex        =   49
+            TabIndex        =   51
             Top             =   540
             Width           =   915
          End
@@ -364,7 +374,7 @@ Begin VB.Form fMain
             Height          =   255
             Index           =   6
             Left            =   0
-            TabIndex        =   47
+            TabIndex        =   49
             Top             =   120
             Width           =   855
          End
@@ -373,7 +383,7 @@ Begin VB.Form fMain
             Height          =   255
             Index           =   10
             Left            =   2040
-            TabIndex        =   54
+            TabIndex        =   56
             Top             =   540
             Width           =   615
          End
@@ -404,6 +414,16 @@ Begin VB.Form fMain
                ImageKey        =   "fileb"
             EndProperty
          EndProperty
+      End
+      Begin VB.Label zLbl 
+         Caption         =   "Forma&t:"
+         Height          =   255
+         Index           =   16
+         Left            =   120
+         TabIndex        =   44
+         ToolTipText     =   "number of alphas in plain"
+         Top             =   600
+         Width           =   915
       End
    End
    Begin MSComctlLib.Toolbar hashModeToolbar 
@@ -442,75 +462,75 @@ Begin VB.Form fMain
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   18
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":2747A
+            Picture         =   "fMain.frx":274B9
             Key             =   "file2"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":275D4
+            Picture         =   "fMain.frx":27613
             Key             =   "file"
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":27B6E
+            Picture         =   "fMain.frx":27BAD
             Key             =   "folder2"
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":27CC8
+            Picture         =   "fMain.frx":27D07
             Key             =   "folder"
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":28262
+            Picture         =   "fMain.frx":282A1
             Key             =   "folder-open"
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":287FC
+            Picture         =   "fMain.frx":2883B
             Key             =   "broken"
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":28956
+            Picture         =   "fMain.frx":28995
             Key             =   "arrup"
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":28EF0
+            Picture         =   "fMain.frx":28F2F
             Key             =   "arrdown"
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":2948A
+            Picture         =   "fMain.frx":294C9
             Key             =   "delete"
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":29A24
+            Picture         =   "fMain.frx":29A63
             Key             =   "listsymbol"
          EndProperty
          BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":29B7E
+            Picture         =   "fMain.frx":29BBD
             Key             =   "listdetail"
          EndProperty
          BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":29CD8
+            Picture         =   "fMain.frx":29D17
             Key             =   "tripoint2"
          EndProperty
          BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":29E32
+            Picture         =   "fMain.frx":29E71
             Key             =   "tripoint"
          EndProperty
          BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":29F8C
+            Picture         =   "fMain.frx":29FCB
             Key             =   "dropdown"
          EndProperty
          BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":2A0E6
+            Picture         =   "fMain.frx":2A125
             Key             =   "drhash"
          EndProperty
          BeginProperty ListImage16 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":2A680
+            Picture         =   "fMain.frx":2A6BF
             Key             =   "edit"
          EndProperty
          BeginProperty ListImage17 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":2AC1A
+            Picture         =   "fMain.frx":2AC59
             Key             =   "fileb"
          EndProperty
          BeginProperty ListImage18 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":2B1B4
+            Picture         =   "fMain.frx":2B1F3
             Key             =   "copy"
          EndProperty
       EndProperty
@@ -525,9 +545,9 @@ Begin VB.Form fMain
       Width           =   8415
       Begin VB.ComboBox ruleGenerateText 
          Height          =   315
-         ItemData        =   "fMain.frx":2B74E
+         ItemData        =   "fMain.frx":2B78D
          Left            =   1860
-         List            =   "fMain.frx":2B764
+         List            =   "fMain.frx":2B7A3
          TabIndex        =   23
          Text            =   "10 k"
          Top             =   960
@@ -547,7 +567,7 @@ Begin VB.Form fMain
          Left            =   120
          ScaleHeight     =   1095
          ScaleWidth      =   2295
-         TabIndex        =   58
+         TabIndex        =   60
          TabStop         =   0   'False
          Top             =   300
          Width           =   2295
@@ -582,7 +602,7 @@ Begin VB.Form fMain
       Begin MSComctlLib.Toolbar ruleFileTB 
          Height          =   330
          Left            =   7620
-         TabIndex        =   60
+         TabIndex        =   62
          Top             =   600
          Width           =   705
          _ExtentX        =   1244
@@ -651,7 +671,7 @@ Begin VB.Form fMain
       ForeColor       =   &H80000008&
       Height          =   1080
       Left            =   0
-      Picture         =   "fMain.frx":2B788
+      Picture         =   "fMain.frx":2B7C7
       ScaleHeight     =   1080
       ScaleWidth      =   9600
       TabIndex        =   0
@@ -663,15 +683,15 @@ Begin VB.Form fMain
       Height          =   75
       Index           =   2
       Left            =   0
-      TabIndex        =   57
+      TabIndex        =   59
       Top             =   900
       Width           =   99135
    End
    Begin VB.ComboBox hashModeCombo 
       Height          =   315
-      ItemData        =   "fMain.frx":4D3CC
+      ItemData        =   "fMain.frx":4D40B
       Left            =   4980
-      List            =   "fMain.frx":4D3CE
+      List            =   "fMain.frx":4D40D
       TabIndex        =   12
       Text            =   "hashModeCombo"
       ToolTipText     =   "Hashmode"
@@ -680,9 +700,9 @@ Begin VB.Form fMain
    End
    Begin VB.ComboBox recoveryModeCombo 
       Height          =   315
-      ItemData        =   "fMain.frx":4D3D0
+      ItemData        =   "fMain.frx":4D40F
       Left            =   1260
-      List            =   "fMain.frx":4D3D2
+      List            =   "fMain.frx":4D411
       Style           =   2  'Dropdown-Liste
       TabIndex        =   11
       ToolTipText     =   "Recoverymode"
@@ -702,7 +722,7 @@ Begin VB.Form fMain
       Height          =   75
       Index           =   0
       Left            =   0
-      TabIndex        =   56
+      TabIndex        =   58
       Top             =   780
       Width           =   99135
    End
@@ -711,7 +731,7 @@ Begin VB.Form fMain
       Height          =   300
       Left            =   0
       TabIndex        =   38
-      Top             =   10770
+      Top             =   11460
       Width           =   8550
       _ExtentX        =   15081
       _ExtentY        =   529
@@ -1450,6 +1470,9 @@ Dim iIndex As Long
     outFileText.Text = oJob.OutFile
     outFileCheck.Value = Abs(oJob.OutFile.Use)
     
+    ' outformat
+    outFormatText.ListIndex = oJob.OutFormat
+    
     'plains
     plainsList.ListItems.Clear
     Call plainsList_AddPlains(oJob.Plains)
@@ -1509,6 +1532,9 @@ Dim oJob As New cJob
     oJob.OutFile.Value = outFileText.Text
     oJob.OutFile.Use = outFileCheck.Value
     
+    ' outformat
+    oJob.OutFormat = outFormatText.ListIndex
+    
     'saltfile
     oJob.SaltFile.Value = saltFileText.Text
     oJob.SaltFile.Use = saltFileCheck.Value
@@ -1534,13 +1560,8 @@ Public Function Job_Change()
     Me.Dirty = True
     
     'reflect the changes visuall in new textbox
-    'TODO becomes obsolete somehow in the future
-    'Dim oPlains As cPlains
-    'Set oPlains = HCGUI_Plains_Expand(Me.Plains)
-    'plainsText.Text = oPlains.Caption
     Commandline_Change
     
-
 End Function
 Public Property Get commandlineDisplay() As Long
     commandlineDisplay = m_commandlineDisplay
@@ -2327,6 +2348,19 @@ Private Sub hashSeperator_GotFocus()
     Call textbox_select_all(hashSeperator)
 End Sub
 
+Private Sub outFormatText_Change()
+
+    Job_Change
+
+End Sub
+
+Private Sub outFormatText_Click()
+
+    outFormatText_Change
+
+End Sub
+
+
 Private Sub recoveryModeCombo_Change()
 
     zOptFramesChange
@@ -2482,6 +2516,9 @@ Dim i As Long
     
     ' fill hashmodes
     Call zFillHashmodes(Me.hashModeCombo)
+    
+    ' reset outFormatText
+    outFormatText.ListIndex = 0
     
     'load ini
     Call ini_load(HCGUI_Inifile)
@@ -3374,7 +3411,9 @@ Private Sub zLbl_Click(Index As Integer)
         Case 14:
             hashSeperator.SetFocus
         Case 15:
-              plainsList.SetFocus
+            plainsList.SetFocus
+        Case 16:
+            outFormatText.SetFocus
         
     End Select
     

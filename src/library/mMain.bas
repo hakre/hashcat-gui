@@ -656,6 +656,9 @@ Dim i As Long
     'outfile
     oJob.OutFile.External = INIRead(sSection, "out", sFile)
     
+    'outformat
+    oJob.OutFormat = INIReadInt(sSection, "outformat", sFile)
+    
     'plains
     iNum = INIReadInt(sSection, "plainnum", sFile)
     If iNum > 0 Then
@@ -716,6 +719,9 @@ Dim oPlain As cPlainfile
     
     'outfile
     r = INIWrite(oJob.OutFile.External, sSection, "out", sFile)
+    
+    'outformat
+    r = INIWrite(oJob.OutFormat, sSection, "outformat", sFile)
     
     'plains
     i = 0

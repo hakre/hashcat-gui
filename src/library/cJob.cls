@@ -25,6 +25,7 @@ Private m_HashSeperator As String
 Private m_HashRemove As Boolean
 Private m_Limit As Variant
 Private m_OutFile As New cJobOptional
+Private m_OutFormat As Long
 Private m_Plains As cPlains
 Private m_RuleCount As String
 Private m_RuleFile As String
@@ -49,18 +50,18 @@ End Property
 Public Property Let HashFile(sValue As String)
     m_HashFile = sValue
 End Property
-Public Property Let HashRemove(bRemove As Boolean)
+Public Property Let hashRemove(bRemove As Boolean)
     m_HashRemove = bRemove
 End Property
 
-Public Property Get HashRemove() As Boolean
-    HashRemove = m_HashRemove
+Public Property Get hashRemove() As Boolean
+    hashRemove = m_HashRemove
 End Property
 
-Public Property Get HashSeperator() As String
-    HashSeperator = m_HashSeperator
+Public Property Get hashSeperator() As String
+    hashSeperator = m_HashSeperator
 End Property
-Public Property Let HashSeperator(sValue As String)
+Public Property Let hashSeperator(sValue As String)
     If Len(sValue) > 1 Then sValue = Left(sValue, 1)
     If Len(sValue) = 0 Then sValue = ":"
     m_HashSeperator = sValue
@@ -76,6 +77,16 @@ End Property
 Public Property Get Limit() As Variant
     Limit = m_Limit
 End Property
+Public Property Let OutFormat(iValue As Long)
+    If iValue < 0 Then iValue = 0
+    If iValue > 2 Then iValue = 2
+    m_OutFormat = iValue
+End Property
+
+Public Property Get OutFormat() As Long
+    OutFormat = m_OutFormat
+End Property
+
 Public Property Get RecoveryMode() As Long
     RecoveryMode = m_RecoveryMode
 End Property

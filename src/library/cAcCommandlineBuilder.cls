@@ -238,6 +238,7 @@ Public Property Get Parameters() As String
 Dim sParams As String
 Dim iRecoverymode As Long
 Dim sValue As String
+Dim iValue As String
 Dim sSeperator As String
     
     'attack mode -a
@@ -292,6 +293,9 @@ Dim sSeperator As String
         sValue = m_form.outFileText
         sParams = sParams & " -o " & EscapeParam(HandleRelativity(sValue))
     End If
+    
+    'output format --output-format
+    sParams = NumMin(sParams, m_form.outFormatText.ListIndex, "--output-format", 0)
     
     'resources
     sParams = NumMin(sParams, m_form.threadsText.Text, "-n", 8)
