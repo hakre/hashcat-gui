@@ -260,6 +260,11 @@ Dim sSeperator As String
                     sParams = sParams & " -g " & m_form.RuleGenerate
             End Select
             
+            If m_form.debugFileCheck.Value Then
+                sParams = sParams & " --debug-file " & EscapeParam(m_form.debugFileText.Text)
+                sParams = sParams & " --debug-mode " & CStr(m_form.debugModeText.ListIndex) + 1
+            End If
+            
             If iRecoverymode = 2 Then 'toggle attack
                 sParams = NumMin(sParams, m_form.toggleLenText(0).Text, "--toggle-min", 1, 1)
                 sParams = NumMin(sParams, m_form.toggleLenText(1).Text, "--toggle-max", 16, 1)

@@ -30,6 +30,8 @@ Private m_Plains As cPlains
 Private m_RuleCount As String
 Private m_RuleFile As String
 Private m_RuleMode As Long
+Private m_RuleDebugFile As New cJobOptional
+Private m_RuleDebugMode As Long
 Private m_SaltFile As New cJobOptional
 Private m_Segment As Long
 Private m_Skip As Variant
@@ -124,6 +126,22 @@ End Property
 Public Property Let RuleCount(sValue As String)
     m_RuleCount = sValue
 End Property
+Public Property Set RuleDebugFile(oValue As cJobOptional)
+    Set m_RuleDebugFile = oValue
+End Property
+Public Property Get RuleDebugFile() As cJobOptional
+    Set RuleDebugFile = m_RuleDebugFile
+End Property
+
+Public Property Let RuleDebugMode(iValue As Long)
+    If iValue < 1 Then iValue = 1
+    If iValue > 3 Then iValue = 3
+    m_RuleDebugMode = iValue
+End Property
+Public Property Get RuleDebugMode() As Long
+    RuleDebugMode = m_RuleDebugMode
+End Property
+
 Public Property Get RuleFile() As String
     RuleFile = m_RuleFile
 End Property
@@ -174,6 +192,7 @@ Private Sub Class_Initialize()
     m_Threads = 8
     m_Segment = 32
     m_HashSeperator = ":"
+    m_RuleDebugMode = 1
     Call m_BruteLen.Init(1, 8, 1, 1024)
     Call m_ToggleLen.Init(1, 16, 1, 1024)
 End Sub

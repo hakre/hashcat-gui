@@ -673,6 +673,10 @@ Dim i As Long
     oJob.RuleFile = INIRead(sSection, "rulefile", sFile)
     oJob.RuleMode = INIReadInt(sSection, "rulemode", sFile)
     
+    'rule debug
+    oJob.RuleDebugFile.External = INIRead(sSection, "ruledebugfile", sFile)
+    oJob.RuleDebugMode = INIReadInt(sSection, "ruledebugmode", sFile)
+    
     'saltfile
     oJob.SaltFile.External = INIRead(sSection, "saltfile", sFile)
     
@@ -736,6 +740,10 @@ Dim oPlain As cPlainfile
     r = INIWrite(oJob.RuleCount, sSection, "rulecount", sFile)
     r = INIWrite(oJob.RuleFile, sSection, "rulefile", sFile)
     r = INIWrite(oJob.RuleMode, sSection, "rulemode", sFile)
+    
+    'rule debug
+    r = INIWrite(oJob.RuleDebugFile.External, sSection, "ruledebugfile", sFile)
+    r = INIWrite(oJob.RuleDebugMode, sSection, "ruledebugmode", sFile)
     
     'saltfile
     r = INIWrite(oJob.SaltFile.External, sSection, "saltfile", sFile)
