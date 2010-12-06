@@ -98,7 +98,7 @@ Dim cFile As New cFileinfo
     Set cc = New cCommonDialog
     
     If cc.VBGetOpenFileName(sFile, , , , , , _
-        sFilter & "|Executeables|*.bin;*.exe|All Files (*.*)|*.*", , sInitDir, "Select hashcat Executeable", "exe", hWnd, OFN_HideReadOnly) Then
+        sFilter & "|Executeables|*.bin;*.exe|All Files (*.*)|*.*", , sInitDir, "Select hashcat binary", "exe", hWnd, OFN_HideReadOnly) Then
         HCGUI_bin_askfor = sFile
     End If
     
