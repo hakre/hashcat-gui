@@ -60,7 +60,8 @@ Dim i As Long, l As Long, tstr As String, c As Long
         If Len(str) > 29 Then
             str = "79228162514264337593543950335"
         End If
-        If str > "79228162514264337593543950335" Then
+        If Len(str) = 29 And str > "79228162514264337593543950335" Then
+            'FIXME, do a better comparison
             str = "79228162514264337593543950335"
         End If
         Cnv_Str2Dec = CDec(str)

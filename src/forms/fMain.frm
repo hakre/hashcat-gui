@@ -3246,11 +3246,11 @@ Dim vValue As Variant
         skipText(Index).Text = ""
     ElseIf TypeName(vValue) = "Decimal" Then
         If vValue < 0 Then
-            skipText(Index).Text = "0"
+            vValue = 0
         ElseIf vValue > CDec("18446744073709551615") Then
             vValue = CDec("18446744073709551615")
-            skipText(Index).Text = CStr(vValue)
         End If
+        skipText(Index).Text = CStr(vValue)
     End If
 
 End Sub
