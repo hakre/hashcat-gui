@@ -151,16 +151,10 @@ Dim sDefault As String
     
     'default binary basename
     sDefBasename = "hashcat-cli32.exe"
-    If Environ("PROCESSOR_ARCHITECTURE") = "AMD64" Then
+    If HCGUI_is64bit() Then
         sDefBasename = "hashcat-cli64.exe"
     End If
     
-    If BinOs = -1 Then BinOs = HCGUI_BinOs
-    If BinOs = Wine Then
-        ' FIXME it's just the same, fix this (2010-12-04)
-        sDefBasename = sDefBasename
-    End If
-            
     'create the default to be able to compare
     oFi.Path = HCGUI_directory(0)
     sDefault = oFi.Dirname & sDefBasename
@@ -174,7 +168,8 @@ Dim sDefault As String
     End If
 
     'if there is no file, ask for it if allowed to be interactive
-    If sFile = "" Then
+    oFi.Path = sFile
+    If sFile = "" Or Not oFi.Exists Then
         If sDefault = "" And bInteractive Then
             sDefault = HCGUI_bin_askfor(hWnd)
         End If
@@ -625,7 +620,8 @@ Dim sFile As String
     ' bin is saved in the ini
     If HCGUI_BinFile = "*" Then
        HCGUI_BinFile = INIRead("default", "hashcat", HCGUI_Inifile)
-       If HCGUI_BinFile = "" Then
+       oFi.Path = HCGUI_BinFile
+       If HCGUI_BinFile = "" Or Not oFi.Exists Then
             HCGUI_BinFile = HCGUI_bin_guess(bInteractive, hWnd)
        End If
     End If
