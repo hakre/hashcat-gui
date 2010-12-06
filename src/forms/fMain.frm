@@ -20,6 +20,7 @@ Begin VB.Form fMain
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
+   Picture         =   "fMain.frx":57E2
    ScaleHeight     =   11070
    ScaleWidth      =   8550
    StartUpPosition =   3  'Windows-Standard
@@ -42,9 +43,9 @@ Begin VB.Form fMain
       Width           =   8415
       Begin VB.ComboBox bruteCharsText 
          Height          =   315
-         ItemData        =   "fMain.frx":57E2
+         ItemData        =   "fMain.frx":27426
          Left            =   1200
-         List            =   "fMain.frx":57EC
+         List            =   "fMain.frx":27430
          OLEDropMode     =   1  'Manuell
          TabIndex        =   32
          Text            =   "abcdefghijklmnopqrstuvwxyz"
@@ -81,9 +82,9 @@ Begin VB.Form fMain
       End
       Begin VB.ComboBox saltFileText 
          Height          =   315
-         ItemData        =   "fMain.frx":5832
+         ItemData        =   "fMain.frx":27476
          Left            =   1200
-         List            =   "fMain.frx":5834
+         List            =   "fMain.frx":27478
          OLEDropMode     =   1  'Manuell
          TabIndex        =   16
          ToolTipText     =   "charset for attack"
@@ -441,75 +442,75 @@ Begin VB.Form fMain
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   18
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":5836
+            Picture         =   "fMain.frx":2747A
             Key             =   "file2"
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":5990
+            Picture         =   "fMain.frx":275D4
             Key             =   "file"
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":5F2A
+            Picture         =   "fMain.frx":27B6E
             Key             =   "folder2"
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":6084
+            Picture         =   "fMain.frx":27CC8
             Key             =   "folder"
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":661E
+            Picture         =   "fMain.frx":28262
             Key             =   "folder-open"
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":6BB8
+            Picture         =   "fMain.frx":287FC
             Key             =   "broken"
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":6D12
+            Picture         =   "fMain.frx":28956
             Key             =   "arrup"
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":72AC
+            Picture         =   "fMain.frx":28EF0
             Key             =   "arrdown"
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":7846
+            Picture         =   "fMain.frx":2948A
             Key             =   "delete"
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":7DE0
+            Picture         =   "fMain.frx":29A24
             Key             =   "listsymbol"
          EndProperty
          BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":7F3A
+            Picture         =   "fMain.frx":29B7E
             Key             =   "listdetail"
          EndProperty
          BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":8094
+            Picture         =   "fMain.frx":29CD8
             Key             =   "tripoint2"
          EndProperty
          BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":81EE
+            Picture         =   "fMain.frx":29E32
             Key             =   "tripoint"
          EndProperty
          BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":8348
+            Picture         =   "fMain.frx":29F8C
             Key             =   "dropdown"
          EndProperty
          BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":84A2
+            Picture         =   "fMain.frx":2A0E6
             Key             =   "drhash"
          EndProperty
          BeginProperty ListImage16 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":8A3C
+            Picture         =   "fMain.frx":2A680
             Key             =   "edit"
          EndProperty
          BeginProperty ListImage17 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":8FD6
+            Picture         =   "fMain.frx":2AC1A
             Key             =   "fileb"
          EndProperty
          BeginProperty ListImage18 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "fMain.frx":9570
+            Picture         =   "fMain.frx":2B1B4
             Key             =   "copy"
          EndProperty
       EndProperty
@@ -524,9 +525,9 @@ Begin VB.Form fMain
       Width           =   8415
       Begin VB.ComboBox ruleGenerateText 
          Height          =   315
-         ItemData        =   "fMain.frx":9B0A
+         ItemData        =   "fMain.frx":2B74E
          Left            =   1860
-         List            =   "fMain.frx":9B20
+         List            =   "fMain.frx":2B764
          TabIndex        =   23
          Text            =   "10 k"
          Top             =   960
@@ -650,7 +651,7 @@ Begin VB.Form fMain
       ForeColor       =   &H80000008&
       Height          =   1080
       Left            =   0
-      Picture         =   "fMain.frx":9B44
+      Picture         =   "fMain.frx":2B788
       ScaleHeight     =   1080
       ScaleWidth      =   9600
       TabIndex        =   0
@@ -668,9 +669,9 @@ Begin VB.Form fMain
    End
    Begin VB.ComboBox hashModeCombo 
       Height          =   315
-      ItemData        =   "fMain.frx":2B788
+      ItemData        =   "fMain.frx":4D3CC
       Left            =   4980
-      List            =   "fMain.frx":2B78A
+      List            =   "fMain.frx":4D3CE
       TabIndex        =   12
       Text            =   "hashModeCombo"
       ToolTipText     =   "Hashmode"
@@ -679,9 +680,9 @@ Begin VB.Form fMain
    End
    Begin VB.ComboBox recoveryModeCombo 
       Height          =   315
-      ItemData        =   "fMain.frx":2B78C
+      ItemData        =   "fMain.frx":4D3D0
       Left            =   1260
-      List            =   "fMain.frx":2B78E
+      List            =   "fMain.frx":4D3D2
       Style           =   2  'Dropdown-Liste
       TabIndex        =   11
       ToolTipText     =   "Recoverymode"
