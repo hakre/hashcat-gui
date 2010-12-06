@@ -975,22 +975,6 @@ Begin VB.Form fMain
          Caption         =   "E&xit"
          Index           =   7
       End
-      Begin VB.Menu menuFileDebug 
-         Caption         =   "-"
-         Index           =   0
-      End
-      Begin VB.Menu menuFileDebug 
-         Caption         =   "&Run..."
-         Index           =   1
-      End
-      Begin VB.Menu menuFileDebug 
-         Caption         =   "&Shell (cmd)..."
-         Index           =   2
-      End
-      Begin VB.Menu menuFileDebug 
-         Caption         =   "&Wineconsole..."
-         Index           =   3
-      End
    End
    Begin VB.Menu menuFileA 
       Caption         =   "&Settings"
@@ -1225,18 +1209,8 @@ Dim iVer As Long
 
 End Property
 Public Property Let BinaryOs(Os As eAcBinOs)
-Dim bFlag As Boolean
-Dim i As Long
 
     m_BinaryOs = Os
-    
-    bFlag = CBool(Os = Wine)
-    bFlag = False
-    For i = 0 To 3
-        menuFileDebug(i).Visible = bFlag
-    Next i
-    
-    
     Commandline_Change
     
 End Property
@@ -2716,34 +2690,7 @@ Private Sub menuFile_Click(Index As Integer)
 End Sub
 
 
-Private Sub menuFileDebug_Click(Index As Integer)
-Dim r As Long
-Dim runForm As fRun
 
-    Select Case Index
-        Case 0: '---
-        
-        Case 1: 'Run
-            Set runForm = New fRun
-            fRun.Show 0, Me
-            Set fRun = Nothing
-        
-        Case 2: 'shell
-            On Error Resume Next
-                r = Shell("cmd", vbNormalFocus)
-                Me.Caption = r
-            On Error GoTo 0
-            
-        Case 3: 'winconsole
-            On Error Resume Next
-                r = Shell("wineconsole cmd", vbNormalFocus)
-                Me.Caption = r
-            On Error GoTo 0
-            
-    End Select
-    
-
-End Sub
 
 Private Sub menuFileOp_Click(Index As Integer)
 Dim cc As cCommonDialog
