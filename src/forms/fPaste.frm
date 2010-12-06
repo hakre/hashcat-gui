@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form fPaste 
-   Caption         =   "UseHashes from Clipboard"
+   Caption         =   "Hashes from clipboard"
    ClientHeight    =   5355
    ClientLeft      =   60
    ClientTop       =   345
